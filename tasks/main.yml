@@ -1,0 +1,19 @@
+---
+# tasks file for k3s-role
+- name: Copy Config file
+  ansible.builtin.copy:
+    content: "{{ bashrc }}"
+    dest: "/home/{{ ansible_user }}/.bashrc"
+    owner: "{{ ansible_user }}"
+    mode: "0700"
+- name: Disable Firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: stopped
+    enabled: false
+  become: true
+- name: Get k3s install script
+  ansible.builtin.get_url:
+    url: "https://get.k3s.io"
+    dest: "/home/{{ ansible_user }}/k3s_installer"
+    mode: "0700"
