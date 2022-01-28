@@ -1,4 +1,4 @@
-# vars file for k3s-role
+---
 bashrc: |
   alias k="/usr/local/bin/kubectl"
   alias helm="/usr/local/bin/helm"
